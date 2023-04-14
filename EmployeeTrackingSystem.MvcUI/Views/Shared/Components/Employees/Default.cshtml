@@ -1,0 +1,55 @@
+﻿@model List<EmployeesWithDepartmentAndPositionDto>
+
+<p style="text-align:center">Personel Listesi</p>
+
+<a class="btn btn-outline-primary" asp-controller="Employees" asp-action="Create" asp-route-departmentId="@ViewBag.DepartmentId">Yeni Personel Tanımla</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>    
+            <td>Sıra</td>
+            <td>Id</td>
+            <td>Ad</td>
+            <td>Soyad</td>
+            <td>Görev</td>
+            <td>Görev Aksiyonları</td>
+            <td>Personel Aksiyonları</td>
+            <td>Sil</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(i++)</td>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td>@(item.Position == null ? "Görev tanımlanmamış" : item.Position.Name)</td>
+                <td>
+                    @if (item.PositionId == null)
+                    {
+                        <a class="btn btn-outline-secondary" asp-controller="Employees" asp-action="Assignment" asp-route-id="@item.Id">Görev ver.</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-outline-warning" asp-controller="Employees" asp-action="Assignment" asp-route-id="@item.Id">Görev değiştir</a>
+                        <a class="btn btn-outline-danger" asp-controller="Employees" asp-action="Dismiss" asp-route-id="@item.Id">Görevden al</a>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-outline-secondary" asp-controller="Employees" asp-action="Details" asp-route-id="@item.Id">Detay</a>
+                    <a class="btn btn-outline-danger" asp-controller="Employees" asp-action="Fire" asp-route-id="@item.Id">İşten Çıkar</a>
+                </td>
+                <td>
+                    <a class="btn btn-outline-danger" asp-controller="Employees" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+

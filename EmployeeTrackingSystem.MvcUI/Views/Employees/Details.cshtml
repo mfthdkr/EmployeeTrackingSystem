@@ -1,0 +1,96 @@
+﻿@model EmployeesWithDepartmentAndPositionDto
+@{
+    ViewData["Title"] = "Employee Details";
+}
+<h5><a class="btn btn-outline-secondary" asp-controller="Departments" asp-action="Details" asp-route-id="@Model.DepartmentId">@Model.Department.Name Bölümü</a> - @Model.Name @Model.Surname Detay Safyası</h5>
+<hr />
+<dl class="row">
+    <dt class="col-2">
+        <label>Adı</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+    <dt class="col-2">
+        <label>Soyadı</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.Surname)
+    </dd>
+    <dt class="col-2">
+        <label>Bölümü</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.Department.Name)
+    </dd>
+    <dt class="col-2">
+        <label>Görevi</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.Position.Name)
+    </dd>
+    <dt class="col-2">
+        <label>TC Kimlik</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.TCNumber)
+    </dd>
+    <dt class="col-2">
+        <label>Cinsiyet</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.Gender)
+    </dd>
+    <dt class="col-2">
+        <label>Doğum Tarihi</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.BirthDate)
+    </dd>
+    <dt class="col-2">
+        <label>Doğum Yeri</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.BirthCity)
+    </dd>
+    <dt class="col-2">
+        <label>İşe Giriş Tarihi</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.Indate)
+    </dd>
+    @if(Model.OutDate != null)
+    {
+        <dt class="col-2">
+            <label>İşten Ayrılış Tarihi</label>
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.OutDate)
+        </dd>
+    }
+    <dt class="col-2">
+        <label>Telefon 1</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.PhoneNumber1)
+    </dd>
+    <dt class="col-2">
+        <label>Telefon 2</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.PhoneNumber2)
+    </dd>
+    <dt class="col-2">
+        <label>Öğrenim Durumu</label>
+    </dt>
+    <dd class="col-10">
+        @Html.DisplayFor(model => model.LevelOfEducation)
+    </dd>
+
+</dl>
+
+<a class="btn btn-outline-warning my-auto" asp-controller="Employees" asp-action="Update" asp-route-id="@Model.Id">Güncelle</a>
+
+<br /><br />
+
+@await Component.InvokeAsync("Addresses",new {employeeId = (int) ViewBag.EmployeeId})

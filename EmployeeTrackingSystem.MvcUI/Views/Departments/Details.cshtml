@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Details";
+}
+@model DepartmentDto
+
+<h5>@Model.Name Bölümü Detay Sayfası</h5>
+
+@await Component.InvokeAsync("Positions",new {departmentId = Model.Id})
+
+@await Component.InvokeAsync("Employees",new {departmentId = Model.Id})
+
+@await Component.InvokeAsync("EmployeesNonActive",new {departmentId = Model.Id})

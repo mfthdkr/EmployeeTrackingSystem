@@ -1,0 +1,43 @@
+﻿@model List<EmployeesWithDepartmentAndPositionDto>
+
+<p style="text-align:center">Eski Personeller</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Sıra</th>
+            <th>Id</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Görev</th>
+            <th>Başlangıç</th>
+            <th>Ayrılış</th>
+            <th>Telefon</th>
+            <th>Personel Aksiyonları</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(i++)</td>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td>@(item.Position == null ? "Görev tanımlanmamış" : item.Position.Name)</td>
+                <td>@item.Indate</td>
+                <td>@item.OutDate</td>
+                <td>@item.PhoneNumber1</td>
+                <td><a class="btn btn-outline-danger" asp-controller="Employees" asp-action="Delete" asp-route-id="@item.Id">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+
+
+
+

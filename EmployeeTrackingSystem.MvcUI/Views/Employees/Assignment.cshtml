@@ -1,0 +1,23 @@
+﻿@model EmployeeUpdateDto
+@{
+    ViewData["Title"] = "Assignment";
+}
+<h5><a class="btn btn-outline-secondary" asp-controller="Departments" asp-action="Details" asp-route-id="@Model.DepartmentId">@ViewBag.DepartmentName Bölümü</a> - @Model.Name @Model.Surname Görev Atama Safyası</h5>
+<div class="row">
+    <div class=col-md-6>
+        <form asp-action="Assignment" method="post" asp-controller="Employees">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="PositionId">Posisyon</label>
+                <select asp-for="PositionId" asp-items="ViewBag.Positions" class="form-control">
+                    <option disabled>-Lütfen bir görev seçin-</option>
+                </select>
+            </div>
+            <br /><br />
+
+            <div class="form-group my-auto">
+                <input type="submit" value="Güncelle" class="btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿@model PositionDto
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h5><a class="btn btn-outline-secondary" asp-controller="Departments" asp-action="Details" asp-route-id="@Model.DepartmentId">@ViewBag.DeparmentName Bölümü</a> - @Model.Name Detay Sayfası</h5>
+
+@await Component.InvokeAsync("Employees",new {departmentId = Model.DepartmentId,
+positionId = Model.Id})
+
+@await Component.InvokeAsync("EmployeesNonActive",new {departmentId = Model.DepartmentId,
+positionId = Model.Id})
